@@ -1,0 +1,90 @@
+- Illumina sequencing
+
+
+
+https://www.youtube.com/watch?v=fCd6B5HRaZ8
+
+https://www.youtube.com/watch?v=jFCD8Q6qSTM
+
+https://s3.amazonaws.com/bitesizebio/content/uploads/2012/08/figure1.png
+
+
+
+- Illumina RAW data and analysis
+
+
+
+https://www.youtube.com/watch?v=l4BAfRekohk
+
+
+
+- The FASTQ format
+
+
+
+https://en.wikipedia.org/wiki/FASTA_format
+
+https://en.wikipedia.org/wiki/FASTQ_format
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2847217/
+
+
+
+- Short Read Aligners (Bowtie, Bowtie2, Tophat, Tophat2, BWA, Maq, STAR, SALMON, Hisat2…)
+
+
+
+Bowtie - DNA-Seq, ChIP-Seq, etc, end-to-end
+
+http://bowtie-bio.sourceforge.net/index.shtml
+
+http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+
+
+
+Tophat - STAR - RNASeq - spliced (gapped) alignments
+
+https://ccb.jhu.edu/software/tophat/index.shtml
+
+https://github.com/alexdobin/STAR
+
+
+
+- The SAM-BAM format
+
+
+
+http://www.metagenomics.wiki/tools/samtools/bam-sam-file-format
+
+https://bioinformatics.stackexchange.com/questions/14/what-is-the-difference-between-fasta-fastq-and-sam-file-formats
+
+
+
+- FASTQC
+
+
+
+https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+
+
+- Cleaning FastQ files: sequencing 'artifacts'. cutadapt, trimmomatic
+
+
+
+https://cutadapt.readthedocs.io/en/stable/guide.html
+
+http://www.usadellab.org/cms/?page=trimmomatic
+
+
+
+- Cleaning and filtering SAM-BAM files: samtools, sambamba, picard
+
+
+
+http://www.htslib.org/
+
+http://lomereiter.github.io/sambamba/
+
+https://broadinstitute.github.io/picard/
+
