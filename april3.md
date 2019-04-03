@@ -2,8 +2,7 @@
 
 - FastQC tutorial and Galaxy
 
-https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html#process-paired-end-data
-
+https://galaxyproject.github.io/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html
 - FASTQ example data from Zenodo repository
 
 https://zenodo.org/record/61771#.XKO4lSN94y4
