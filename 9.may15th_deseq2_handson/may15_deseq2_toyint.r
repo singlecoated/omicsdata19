@@ -8,7 +8,7 @@ library(DESeq2)
 library(ggplot2)
 library(pheatmap)
 
-## Example 3: two conditions (genotype), two groups (diet), with interaction terms
+## Building toy dataset: two conditions (genotype), two groups (diet), with interaction terms
 set.seed(149) 
 args(makeExampleDESeqDataSet)
 dds <- makeExampleDESeqDataSet(n=1000,m=16,betaSD=2,interceptSD=4) # 1000 genes, 4 samples per condition/group
