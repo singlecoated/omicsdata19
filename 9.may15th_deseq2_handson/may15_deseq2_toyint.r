@@ -116,6 +116,8 @@ design(dds) <- ~ condition + group + condition:group # full model
 dds <- DESeq(dds)
 resultsNames(dds) # We have the interaction, but as it is specified, it is measured using Normal Diet as the basal reference, and we want it the other way
 
+# In order to change the reference, we have to relevel the factors (and not the factor order in the interaction, as A:B will be the same as B:A)
+
 # check factor levels
 x$condition # Reference is A, WT, that's usually ok
 x$group # Reference is HFD, let's change that
