@@ -12,9 +12,9 @@ library(ggplot2)
 library(pheatmap)
 
 ## Building toy dataset: two conditions (genotype), two groups (diet), with interaction terms
-set.seed(149) 
+set.seed(149) # Use 149 to replicate the example using the parameters below, or change for generating a new random dataset
 args(makeExampleDESeqDataSet)
-dds <- makeExampleDESeqDataSet(n=1000,m=16,betaSD=2,interceptSD=4) # 1000 genes, 4 samples per condition/group
+dds <- makeExampleDESeqDataSet(n=1000,m=16,betaSD=2,interceptSD=4) # 1000 genes, 4 samples per condition/group, betaSD=2, interceptSD=4
 #save(dds,file='dds.RData')
 
 # Assign real mus musculus names
