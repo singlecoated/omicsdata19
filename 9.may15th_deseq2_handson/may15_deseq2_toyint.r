@@ -8,10 +8,10 @@ library(DESeq2)
 library(ggplot2)
 library(pheatmap)
 
-## Example 3: two conditions, three groups, with interaction terms
+## Example 3: two conditions (genotype), two groups (diet), with interaction terms
 set.seed(149) 
 args(makeExampleDESeqDataSet)
-dds <- makeExampleDESeqDataSet(n=1000,m=16,betaSD=2,interceptSD=4) # 1000 genes, 4 samples per basic condition
+dds <- makeExampleDESeqDataSet(n=1000,m=16,betaSD=2,interceptSD=4) # 1000 genes, 4 samples per condition/group
 #save(dds,file='dds.RData')
 
 # Assign real mus musculus names
