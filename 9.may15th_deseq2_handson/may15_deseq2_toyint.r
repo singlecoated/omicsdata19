@@ -1,5 +1,8 @@
 ######################################################
-# Interaction test
+# DESeq2 template code for toy dataset analysis
+# 2 factors + interaction effect
+# Exploration and QC, modelling, DE, results, Viz
+# UPC - MESIO. May 15th 2019
 ######################################################
 
 # Scenario: two mice groups (A=WT, B=KO) and two diet types (ND=Normal Diet, HFD=High Fat Diet)
