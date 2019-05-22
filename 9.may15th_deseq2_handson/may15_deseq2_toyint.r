@@ -270,7 +270,68 @@ library(pheatmap)
 pheatmap(assay(dds)[rownames(res.sel),], cluster_rows=TRUE, show_rownames=TRUE,cluster_cols=FALSE, annotation_col=df,scale='row')
 
 #################################
-# 8. ADDITIONAL WORK...
+# 8. GENE SET ENRICHMENT
+#################################
+
+# fgsea for genesets
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#        install.packages("BiocManager")
+#BiocManager::install("fgsea")
+library(fgsea)
+library(limma)
+
+# Let's work with our current design and contrast, testing global differences between genotypes
+design(dds) <- ~ condition + group
+dds <- DESeq(dds)
+rownames(dds) <- genes.1000$gene_id
+resultsNames(dds)
+res <- results(dds,contrast=c('condition','B','A'))
+summary(res)
+mm <- model.matrix(~ condition + group, data=colData(dds))
+head(mm)
+res2 <- results(dds,c(0,1,0)) # Another way of retrieving the result, one for every element of resultsNames(dds)
+summary(res2)
+
+# get Hallmark gene sets for mouse, available for human and mouse at http://bioinf.wehi.edu.au/software/MSigDB/index.html
+download.file('http://bioinf.wehi.edu.au/software/MSigDB/mouse_H_v5p2.rdata',destfile='./mouse_H_v5p2.rdata')
+load('mouse_H_v5p2.rdata')
+Mm.H # list of hallmark gene sets with entrez ID
+# In case we needed to map one gene id to a different one, see
+# The gene identifiers are Entrez Gene ID, as are the rownames of our DGEList object ‘dgeObj’.
+# We need to map the Entrez gene ids between the list of gene sets and our DGEList object. We can do this using the ids2indices function.
+# h.ind <- ids2indices(Mm.H, rownames(dds)) # in our case will return the same
+
+# Run permutation based camera
+head(mm)
+#camera(as.matrix(assay(dds)),index=Mm.H,mm,contrast=15,use.ranks=FALSE)
+c.def1 <- camera(as.matrix(assay(dds)),index=Mm.H,mm,contrast=c(0,1,0),use.ranks=FALSE) # contrast vector
+c.def2 <- camera(as.matrix(assay(dds)),index=Mm.H,mm,contrast=2,use.ranks=FALSE) # contrast specifies column of model matrix
+identical(c.def1,c.def2)
+head(c.def1)
+head(c.def2)
+
+# Run preranked camera
+stats <- res$log2FoldChange
+names(stats) <- rownames(dds)
+stats <- stats[!is.na(stats)]
+c.pr <- cameraPR(statistic=stats,use.ranks=TRUE,Mm.H)
+head(c.pr)
+
+# For testing nested effects, remember to specify the model as
+# design(dds) <- ~ 0 + cg
+# mm <- model.matrix(~ 0 + cg,data=colData(dds))
+
+# Some additional tutorials
+# Camera and ROAST
+# https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3458527/
+# https://bioinformatics-core-shared-training.github.io/RNAseq-R/rna-seq-gene-set-testing.nb.html
+# FGSEA
+# https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html
+# Original Broad GSEA and Molecular Signatures Database
+# http://software.broadinstitute.org/gsea/msigdb
+
+#################################
+# 9. ADDITIONAL WORK...
 #################################
 
 # Now, some open questions for you to do, explore, complete the code, etc
@@ -292,7 +353,6 @@ pheatmap(assay(dds)[rownames(res.sel),], cluster_rows=TRUE, show_rownames=TRUE,c
 # biomaRt: https://bioconductor.org/packages/release/bioc/html/biomaRt.html
 # Glimma interactive HTML reports: https://bioconductor.org/packages/release/bioc/html/Glimma.html
 # DAVID gene set enrichment tests: https://david.ncifcrf.gov/
-# GSEA enrichment analysis using the limma camera function: https://bioconductor.org/packages/release/bioc/html/limma.html 
-
+# GSEA enrichment analysis using the limma camera function: https://bioconductor.org/packages/release/bioc/html/limma.html
 
 
